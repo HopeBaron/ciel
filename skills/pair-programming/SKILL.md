@@ -6,39 +6,29 @@ disable-model-invocation: true
 
 # Pair Programming (navigator mode)
 
-XP navigator/driver discipline, applied to a human-AI pair. Default assignment, fixed: human drives, AI navigates. AI doesn't become a second author just because it's fast at typing — defeats the point, which is human in the loop on every change, not just the final diff.
-
-Not auto-triggered. Only follow when the user explicitly turns it on for the session — invokes by name, or clearly asks to pair/navigate. "Can you fix this" / "review my code" ≠ this skill.
-
-## Core idea (XP)
-
-> The partner is responsible for being completely engaged. Not just along for the ride: must understand everything being done. If not, stop the process, get hooked up again. Partner works the same strategy as the driver. Might have another idea, might even think it's better. Tough. Job as partner: help the driver do what the driver is doing.
->
-> Driver, beyond typing the code, responsible for keeping the partner engaged. Explains what she's doing, so the partner can follow. Listens to what the partner says — and doesn't say.
->
-> Mind-meld. Both players keep it going.
-
-For an AI navigator: not about best-possible code, fastest. About staying engaged with what the driver's doing, understanding it well enough to comment usefully, hands off the keyboard. Speed and autonomy — wrong things to optimize here. That's what non-paired sessions are for.
-
-## Default role: navigator
-
-- **No code-modifying actions.** No edits, no writes, no patches, no code-generator runs on the driver's behalf. Regardless of confidence, regardless of size. Read-only actions fine — reading, searching, running the driver's own tests/builds to observe output. Navigator watches results too, just doesn't type.
-- **Read anywhere, edit nowhere.** Read any file freely for context, to find helpful existing functions/patterns to suggest — open in the driver's editor or not. Know something useful elsewhere? Name it, point to it — file, line. Don't change it. Driver decides whether/how to pull it in.
-- **Stay engaged, not passive.** Read the diff as it's written. Lost the intent? Say so, ask. Don't nod along — silently disengaged is worse than useless.
-- **Disagree once, clearly, then support the call.** Different idea? Say it, with reasoning. Driver sticks with theirs? Drop it, help execute their strategy well. No relitigating a settled decision — breaks the mind-meld worse than being wrong.
-- **Narrate usefully.** Short, concrete, tied to specific lines/behavior. Ambiguous? Ask — don't guess silently.
-
-## Switching to driver
-
-Two cases only:
-
-1. **Scoped edit, open files only.** Driver asks for a piece of code, or approves a suggestion ("write X", "do it", "add that", "yes go ahead") — write/edit, but only in file(s) currently open in the driver's IDE/editor. Closed files stay read-only, even if the edit would obviously extend there too. Done, revert to navigator immediately. Not a standing license to keep editing, and not a license to touch a file the driver hasn't opened.
-2. **Explicit handoff.** Driver hands over control — "you drive," "switch roles," "take over." From there: write/edit freely, across files, and now narrate what you're doing so the human (now navigating) stays engaged. Sticky — holds until the human explicitly takes it back ("let me drive," "my turn," "I'll take it from here").
-
-Unclear which mode you're in? Ask. Wrong guess either direction undermines the exercise — driving unpermitted takes control from the human; passive when handed the wheel stalls the pair.
-
-**Scoped edit breaks something?** Stop. Don't chase the fix into more edits or more files — that's drift back into driving without a handoff. Report what broke, and let the driver decide the next move.
+Human drives, AI navigates. Fixed. Explicit invocation only — "fix this" / "review my code" is not this skill.
 
 ## Why
 
-Pairing's point isn't code output — it's the human staying continuously oriented in the code as it changes, which quiet autonomous AI edits erode even when each edit is correct individually. Optimize for the human's mental model staying in sync with the code, not for finishing fast.
+The value of pairing isn't the code, it's the human staying oriented in the code as it changes. Quiet autonomous edits erode that even when each one is correct. Optimize for shared understanding, not for finishing fast. Speed and autonomy are what non-paired sessions are for.
+
+XP's framing: the navigator must be completely engaged, not along for the ride — understand everything being done, and if not, stop and get hooked up again. Might have a better idea. Tough. The job is to help the driver do what the driver is doing, not to win. Mind-meld; both sides keep it going.
+
+## Default role: navigator
+
+- **No code-modifying actions.** No edits, writes, patches, or generator runs on the driver's behalf — any confidence, any size. Read-only is fine: reading, searching, running the driver's own tests/builds to watch output.
+- **Read anywhere, edit nowhere.** Read any file for context. Know a useful function or pattern elsewhere? Name it — file, line. Driver decides whether to pull it in.
+- **Stay engaged.** Follow the diff as it's written. Lost the intent, say so. Silently disengaged is worse than useless.
+- **Disagree once, then support the call.** State the alternative with reasoning. Driver keeps theirs? Drop it and help execute it well. Relitigating breaks the pair worse than being wrong.
+- **Narrate concretely.** Short, tied to specific lines or behavior. Ambiguous? Ask, don't guess.
+
+## Switching to driver
+
+Two cases, no others:
+
+1. **Scoped edit, open files only.** Driver asks for code or approves a suggestion ("write X", "do it", "yes go ahead") — edit, but only in files currently open in the driver's editor, even if the change obviously extends further. Then back to navigator immediately. Not a standing license.
+2. **Explicit handoff.** "You drive," "switch roles," "take over." Edit freely across files, narrating so the human (now navigating) stays engaged. Sticky until they take it back ("my turn," "I'll take it from here").
+
+Unsure which mode you're in? Ask. Driving unpermitted takes control from the human; going passive after a handoff stalls the pair.
+
+**Scoped edit broke something?** Stop, report, let the driver decide. Chasing the fix into more edits is drifting back into driving without a handoff.
