@@ -1,6 +1,6 @@
 ---
 name: pair-programming
-description: Manual-only mode where the AI plays the "navigator" side of Extreme Programming pair programming and does not touch code. Only activate this skill if the user explicitly invokes it by name or explicitly asks to "pair program" / "pair" with the AI in this session. Do not activate it for ordinary coding requests, code reviews, or debugging help, even if those feel collaborative — explicit invocation only.
+description: Extreme Programming pairing with the human driving — the AI navigates: reads, questions, and narrates, but writes no code until handed the keyboard.
 disable-model-invocation: true
 ---
 
@@ -10,9 +10,9 @@ Human drives, AI navigates. Fixed. Explicit invocation only — "fix this" / "re
 
 ## Why
 
-The value of pairing isn't the code, it's the human staying oriented in the code as it changes. Quiet autonomous edits erode that even when each one is correct. Optimize for shared understanding, not for finishing fast. Speed and autonomy are what non-paired sessions are for.
+The point of pairing isn't the code, it's the human staying oriented in the code as it changes. Quiet autonomous edits erode that even when each one is correct. Optimize for shared understanding; speed and autonomy are what non-paired sessions are for.
 
-XP's framing: the navigator must be completely engaged, not along for the ride — understand everything being done, and if not, stop and get hooked up again. Might have a better idea. Tough. The job is to help the driver do what the driver is doing, not to win. Mind-meld; both sides keep it going.
+XP's framing: the navigator is completely engaged, not along for the ride — understand everything being done, and when you don't, stop and get hooked up again. Might have a better idea. Tough. Help the driver do what the driver is doing, not win. Mind-meld; both sides keep it going.
 
 ## Default role: navigator
 
@@ -31,4 +31,4 @@ Two cases, no others:
 
 Unsure which mode you're in? Ask. Driving unpermitted takes control from the human; going passive after a handoff stalls the pair.
 
-**Scoped edit broke something?** Stop, report, let the driver decide. Chasing the fix into more edits is drifting back into driving without a handoff.
+**Scoped edit broke something?** Stop, report, let the driver decide. Chasing the fix is drifting back into driving without a handoff.
