@@ -70,5 +70,4 @@ cognitive load significantly; inconsistent formatting does not.
 
 ## Before writing any entry
 
-Ask: **has this already been fixed?** Check the candidate's commits. Reporting a repaired
-problem as a live one is the fastest way to show you did not look.
+Has this already been fixed? See [HISTORY.md](HISTORY.md) §6 for how to check.

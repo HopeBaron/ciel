@@ -148,16 +148,14 @@ returned six and nine findings respectively with no cost on any of them, ordered
 
 Order the list by cost. Severity adjectives are not an ordering; change frequency is.
 
-Two things to record honestly rather than paper over:
+Record honestly rather than paper over: **business intent is not recoverable from code.** What
+the system does is knowable; what it was supposed to do is not. Where behaviour looks wrong,
+record it as suspicious with your reasoning, mark it `[unknown]`, and name it as a question for a
+person. Do not silently correct it, and do not encode it as intended.
 
-- **Over-modularisation has no detector.** If the system looks fragmented, say so `[inferred]`
-  and say you have no cost signal for it.
-- **Business intent is not recoverable from code.** What the system does is knowable; what it
-  was supposed to do is not. Where behaviour looks wrong, record it as suspicious with your
-  reasoning, mark it `[unknown]`, and name it as a question for a person. Do not silently
-  correct it, and do not encode it as intended.
-
-**Done when:** every weak point has all four parts filled, and the list is ordered by cost.
+**Done when:** every weak point has all four parts filled, the list is ordered by cost, and — if
+reading cleared every candidate — the record says so and names what was checked. A phase that
+finds nothing is complete when it shows its work; it is only skipped when it shows nothing.
 
 ## Phase 4 — Propose
 
@@ -179,10 +177,9 @@ At the cost of: <what gets worse - this line is never empty>
 weak point is a preference wearing a proposal's clothes.
 
 **`At the cost of:` is never empty.** Every structural change trades something: types cost
-ceremony on every future edit, extraction costs indirection, splitting costs locality. Three
-pairs conflict reliably — reducing error-proneness raises viscosity; raising provisionality
-raises error-proneness; raising role expressiveness raises diffuseness. A move with no stated
-cost has not been thought about.
+ceremony on every future edit, extraction costs indirection, splitting costs locality. A move
+with no stated cost has not been thought about — see [MOVES.md](references/MOVES.md) for the
+pairs that conflict reliably.
 
 **Prefer the smallest reversible move that removes a named cost.** Sequence moves so the system
 runs after each one.
@@ -200,10 +197,12 @@ no `At the cost of:` line is empty.
 ## Designing something new inside this codebase
 
 When the request is "how should I structure this new feature / module / boundary" rather than
-"what is wrong here", the study is what makes the answer more than a pattern name. Run Phases
-0-2 over the code the new work will touch and sit beside, then skip Phase 3 and write the
-proposal as Phase 4 moves whose `From:` is the structure that exists and whose `Removes:` is the
-Phase 0 quality attribute at risk rather than a recorded weak point.
+"what is wrong here", the study is what makes the answer more than a pattern name. Run every
+phase over the code the new work will touch and sit beside. Phase 3 usually comes back with
+nothing to convict — there is no existing feature to be a weak point in — and its done-when
+covers that: say so, and name what you checked. Write the proposal as Phase 4 moves whose
+`From:` is the structure that exists and whose `Removes:` is the Phase 0 quality attribute at
+risk rather than a recorded weak point.
 
 **On a blank page this skill has nothing to offer** — every technique here reads something that
 already exists. Say so and design without it.
@@ -219,13 +218,10 @@ machine"* — because the people who made them keep the understanding. You keep 
 no wall, no team walking past it, and no memory between sessions. **The record is not a
 byproduct of the study; it is the study's only durable output.**
 
-Three rules govern it, and the first is the one that gets broken:
-
-- **Never leave a section empty.** Write `none`, or `N/A because ...`, or `[unknown] — needs
-  <who>`. A blank section is indistinguishable from a forgotten one.
-- **Record each fact once** and link to it from elsewhere.
-- **Collect every `[unknown]` into one list** at the end, where a person can answer them in a
-  single pass. That list is the handoff.
+[RECORD.md](references/RECORD.md) states the structural rules — never leave a section empty,
+record each fact once. The one worth restating here, because it is the one that gets broken: no
+section is a byproduct written up at the end, and **collect every `[unknown]` into one list** at
+the end, where a person can answer them in a single pass. That list is the handoff.
 
 ## Not this skill
 
